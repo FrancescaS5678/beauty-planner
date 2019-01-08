@@ -6,10 +6,10 @@ export default class SiteNav extends Component {
         return (
             <div>
                 <ul>
-                    <li><h2><Link to="/">Apparel</Link></h2></li>
-                    <li><h2>Accessories</h2></li>
-                    <li><h2>Makeup</h2></li>
-                    <li><h2>Outfits</h2></li>
+                    <li><Link to="/">Apparel</Link></li>
+                    <li><Link to="/ComingSoon">Accessories</Link></li>
+                    <li><Link to="/ComingSoon">Makeup</Link></li>
+                    <li><Link to="/ComingSoon">Outfits</Link></li>
                 </ul>
             </div>
       );
