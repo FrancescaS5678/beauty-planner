@@ -10,6 +10,7 @@ export default class Categories extends Component {
                 <h3><Link to='/apparel/tops'>Tops</Link></h3>
                 <h3><Link to='/apparel/bottoms'>Bottoms</Link></h3>
                 <h3><Link to='/apparel/shoes'>Shoes</Link></h3>
+                <h3><Link to='/apparel/colors'>Colors</Link></h3>
             </div>
         );
     }
