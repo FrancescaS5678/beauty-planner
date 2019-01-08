@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  border-bottom: 5px solid black;
+}
+
+h1 {
+  font-size: 120px;
+  text-align: center;
+  padding-bottom: 20px;
+}
