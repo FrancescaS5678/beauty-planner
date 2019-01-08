@@ -13,3 +13,21 @@ h1 {
   text-align: center;
   padding-bottom: 20px;
 }
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 5px solid black;
+}
+
+li {
+  list-style: none;
+  font-size: 40px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
