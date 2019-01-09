@@ -12,6 +12,15 @@ import ComingSoon from './Pages/ComingSoon'
 import './App.css'
 
 export default class App extends Component {
+
+  state ={
+    apparelList: []
+  }
+
+  renderAddApparel = () => {
+    return <AddApparel apparelList={this.state.apparelList} />
+  }
+
   render() {
     return (
       <Router>
@@ -20,7 +29,7 @@ export default class App extends Component {
             <Route path="/" exact component={Categories} />
             <Route path="/comingsoon" component={ComingSoon} />
             <Route path="/addfilter" component={AddFilter} />
-            <Route path="/addapparel" component={AddApparel} />
+            <Route path="/addapparel" component={this.renderAddApparel} />
             <Route path="/apparel/all" component={AllApparel} />
             <Route path="/apparel/tops" component={TopsFilter} />
             <Route path="/apparel/bottoms" component={BottomsFilter} />

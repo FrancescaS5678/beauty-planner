@@ -1,25 +1,42 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
 export default class AllApparel extends Component {
-
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-    //         file: null
-    //     }
-    //     this.selectImage = this.selectImage.bind(this)
-    // }
-
     state = {
-        file: null
+        file: null,
+        savedApparel: {
+            image: null,
+            category: null,
+            tags: null
+        }
+    }
+
+    static propTypes = {
+        apparelList: PropTypes.array.isRequired
     }
 
     selectImage = (event) => {
         this.setState({
-            file: URL.createObjectURL(event.target.files[0])
+            file: URL.createObjectURL(event.target.files[0]),
+            savedApparel: {
+                image: URL.createObjectURL(event.target.files[0]),
+                tags: null
+            },
         })
+    }
+
+    tagsSaved = (e) => {
+        this.setState({
+            savedApparel: {
+                tags: e.target.value
+            }
+        })
+    }
+
+    saveApparel = () => {
+        this.props.apparelList.push(this.state.savedApparel)
     }
 
     render() {
@@ -35,14 +52,9 @@ export default class AllApparel extends Component {
                 <section id="addApparel">
                     <img src={this.state.file} />
                     <form>
-                        <select name="apparel">
-                            <option value="tops">Tops</option>
-                            <option value="tottoms">Bottoms</option>
-                            <option value="thoes">Shoes</option>
-                        </select>
                         <h4><u>Tags</u></h4>
-                        <input type="text"></input><br />
-                        <button type="submit" id="apparelSave">Save</button>
+                        <input type="text" onChange={this.tagsSaved}></input><br />
+                        <button type="submit" id="apparelSave" onClick={this.saveApparel}>Save</button>
                     </form>
                 </section>
             </div>
