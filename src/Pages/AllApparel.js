@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
 export default class AllApparel extends Component {
+
+    static propTypes = {
+        apparelList: PropTypes.array.isRequired
+    }
+
+    renderTops = () => {
+        for(let i = 0; i < this.props.apparelList.length; i++) {
+            this.props.apparelList.filter(apparel => (apparel.tags.includes("Tops")));
+        }
+    }
+
     render() {
         return (
             <div>
@@ -12,6 +24,7 @@ export default class AllApparel extends Component {
                 <h5><u>Tops</u></h5>
                 <section>
                     <h3><Link to='/addapparel'>+</Link></h3>
+                    {this.renderTops}
                 </section>
                 <h5><u>Bottoms</u></h5>
                 <section>
@@ -22,6 +35,6 @@ export default class AllApparel extends Component {
                     <h3><Link to='/addapparel'>+</Link></h3>
                 </section>
             </div>
-      );
+        );
     }
 }

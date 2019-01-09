@@ -21,16 +21,20 @@ export default class App extends Component {
     return <AddApparel apparelList={this.state.apparelList} />
   }
 
+  renderAllApparel = () => {
+    return <AllApparel apparelList={this.state.apparelList} />
+  }
+
   render() {
     return (
-      <Router>
+      <Router >
         <div className="App">
           <Switch>
             <Route path="/" exact component={Categories} />
             <Route path="/comingsoon" component={ComingSoon} />
             <Route path="/addfilter" component={AddFilter} />
             <Route path="/addapparel" component={this.renderAddApparel} />
-            <Route path="/apparel/all" component={AllApparel} />
+            <Route path="/apparel/all" component={this.renderAllApparel} />
             <Route path="/apparel/tops" component={TopsFilter} />
             <Route path="/apparel/bottoms" component={BottomsFilter} />
             <Route path="/apparel/shoes" component={ShoesFilter} />
