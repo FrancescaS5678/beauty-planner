@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Categories from './Pages/Categories'
 import AddFilter from './Pages/AddFilter'
+import AddApparel from './Pages/AddApparel'
 import AllApparel from './Pages/AllApparel'
 import TopsFilter from './Pages/TopsFilter'
 import BottomsFilter from './Pages/BottomsFilter'
@@ -19,6 +20,7 @@ export default class App extends Component {
             <Route path="/" exact component={Categories} />
             <Route path="/comingsoon" component={ComingSoon} />
             <Route path="/addfilter" component={AddFilter} />
+            <Route path="/addapparel" component={AddApparel} />
             <Route path="/apparel/all" component={AllApparel} />
             <Route path="/apparel/tops" component={TopsFilter} />
             <Route path="/apparel/bottoms" component={BottomsFilter} />
