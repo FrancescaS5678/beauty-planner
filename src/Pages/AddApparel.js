@@ -8,7 +8,10 @@ export default class AllApparel extends Component {
             <div>
                 <header><h1><Link to="/">Beauty Planner</Link></h1></header>
                 <SiteNav />
-                <h2>Some day you will be able to add apparel here</h2>
+                <Link to="/"><button className="backButton">Back</button></Link>
+                <section>
+                    <button>Add Image</button>
+                </section>
             </div>
       );
     }
