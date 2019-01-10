@@ -14,7 +14,13 @@ import './App.css'
 export default class App extends Component {
 
   state ={
-    apparelList: []
+    apparelList: [],
+    allTags: [],
+    categories: ["Tops", "Bottoms", "Shoes", "Colors"]
+  }
+
+  renderCategories = () => {
+    return <Categories categories={this.state.categories} />
   }
 
   renderAddApparel = () => {

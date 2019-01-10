@@ -50,7 +50,7 @@ export default class AllApparel extends Component {
                     <input type="file" ref="fileUploader" name="addpic" onChange={this.selectImage}></input>
                 </section>
                 <section id="addApparel">
-                    <img src={this.state.file} />
+                    <img src={this.state.file} alt="Your Apparel" />
                     <form>
                         <h4><u>Tags</u></h4>
                         <input type="text" onChange={this.tagsSaved}></input><br />
