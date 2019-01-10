@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
 export default class Categories extends Component {
 
     static propTypes = {
-        categories: Proptypes.array.isrequired
+        categories: PropTypes.array.isrequired
     }
 
     render() {

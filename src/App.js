@@ -16,11 +16,15 @@ export default class App extends Component {
   state ={
     apparelList: [],
     allTags: [],
-    categories: ["Tops", "Bottoms", "Shoes", "Colors"]
+    categories: []
   }
 
   renderCategories = () => {
     return <Categories categories={this.state.categories} />
+  }
+
+  renderAddFilter = () => {
+    return <AddFilter categories={this.state.categories} allTags={this.state.allTags} />
   }
 
   renderAddApparel = () => {

@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
 export default class AddFilter extends Component {
+
+    static propTypes = {
+        categories: PropTypes.array,
+        allTags: PropTypes.array
+    }
+
+    // renderTagButtons = () => {
+    //     for (let i = 0; i < this.props.allTags.length; i++) {
+    //         return <button>{this.props.allTags[i]}</button>
+    //     }
+    // }
+
     render() {
         return (
             <div>
@@ -18,15 +31,7 @@ export default class AddFilter extends Component {
                         <h4><u>Tags</u></h4>
                         <div>
                             <button>+</button>
-                            <button>Top</button>
-                            <button>Bottom</button>
-                            <button>Shoe</button>
-                            <button>Red</button>
-                            <button>Green</button>
-                            <button>Blue</button>
-                            <button>Yellow</button>
-                            <button>Black</button>
-                            <button>White</button>
+                            {/* {this.renderTagButtons()} */}
                         </div>
                     </section>
                     <button type="submit">Save</button>
