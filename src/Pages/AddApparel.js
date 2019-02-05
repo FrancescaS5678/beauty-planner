@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
@@ -8,21 +7,17 @@ export default class AllApparel extends Component {
         file: null,
         savedApparel: {
             image: null,
-            category: null,
             tags: null
-        }
+        },
+        tagList: []
     }
-
-    static propTypes = {
-        apparelList: PropTypes.array.isRequired
-    }
-
+    
     selectImage = (event) => {
         this.setState({
             file: URL.createObjectURL(event.target.files[0]),
             savedApparel: {
                 image: URL.createObjectURL(event.target.files[0]),
-                tags: null
+                tags: this.state.savedApparel.tags
             },
         })
     }
@@ -30,13 +25,40 @@ export default class AllApparel extends Component {
     tagsSaved = (e) => {
         this.setState({
             savedApparel: {
-                tags: e.target.value
+                tags: e.target.value,
+                image: this.state.savedApparel.image
             }
         })
     }
 
-    saveApparel = () => {
-        this.props.apparelList.push(this.state.savedApparel)
+    saveApparel = async (e) => {
+        try {
+            let res = await fetch('http://localhost:4001/apparel', {
+                method: 'PUT',
+                body: JSON.stringify(this.state.savedApparel),
+                headers: { "Content-Type": "application/json" },
+                mode: 'cors'
+            })
+            console.log("Success", JSON.stringify(res))
+        } catch (err) {
+            return
+        }
+        this.setState({
+            tagList: this.state.savedApparel.tags.split(",")
+        })
+        try {
+            let res = await fetch('http://localhost:4001/tags', {
+                method: 'PUT',
+                body: JSON.stringify({
+                    tagList: this.state.tagList
+                }),
+                headers: { "Content-Type": "application/json" },
+                mode: 'cors'
+            })
+            console.log("Success", JSON.stringify(res))
+        } catch (err) {
+            return
+        }
     }
 
     render() {
@@ -54,7 +76,7 @@ export default class AllApparel extends Component {
                     <form>
                         <h4><u>Tags</u></h4>
                         <input type="text" onChange={this.tagsSaved}></input><br />
-                        <button type="submit" id="apparelSave" onClick={this.saveApparel}>Save</button>
+                        <Link to="/apparel/all"><button type="submit" id="apparelSave" onClick={this.saveApparel}>Save</button></Link>
                     </form>
                 </section>
             </div>

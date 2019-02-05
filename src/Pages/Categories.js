@@ -1,12 +1,28 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
+import CategoryRender from './CategoryRender'
 
 export default class Categories extends Component {
 
-    static propTypes = {
-        categories: PropTypes.array.isrequired
+    state = {
+        categoriesList: []
+    }
+
+    componentDidMount = async () => {
+        try {
+            const res = await fetch('http://localhost:4001/categories')
+            const categoriesList = await res.json()
+            this.setState({ categoriesList })
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
+
+    renderCategory = () => {
+        return this.state.categoriesList.map((category) => {
+            return <CategoryRender name={category.name} url={category.url} />
+        })
     }
 
     render() {
@@ -17,12 +33,8 @@ export default class Categories extends Component {
                 <div className="category">
                     <h3><Link to='/addfilter'>+</Link></h3>
                     <h3><Link to='/apparel/all'>All</Link></h3>
-                    <h3><Link to='/apparel/tops'>Tops</Link></h3>
-                    <h3><Link to='/apparel/bottoms'>Bottoms</Link></h3>
-                    <h3><Link to='/apparel/shoes'>Shoes</Link></h3>
-                    <h3><Link to='/apparel/colors'>Colors</Link></h3>
                 </div>
             </div>
-        );
+        )
     }
 }

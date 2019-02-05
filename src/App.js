@@ -12,29 +12,6 @@ import ComingSoon from './Pages/ComingSoon'
 import './App.css'
 
 export default class App extends Component {
-
-  state ={
-    apparelList: [],
-    allTags: [],
-    categories: []
-  }
-
-  renderCategories = () => {
-    return <Categories categories={this.state.categories} />
-  }
-
-  renderAddFilter = () => {
-    return <AddFilter categories={this.state.categories} allTags={this.state.allTags} />
-  }
-
-  renderAddApparel = () => {
-    return <AddApparel apparelList={this.state.apparelList} />
-  }
-
-  renderAllApparel = () => {
-    return <AllApparel apparelList={this.state.apparelList} />
-  }
-
   render() {
     return (
       <Router >
@@ -43,8 +20,8 @@ export default class App extends Component {
             <Route path="/" exact component={Categories} />
             <Route path="/comingsoon" component={ComingSoon} />
             <Route path="/addfilter" component={AddFilter} />
-            <Route path="/addapparel" component={this.renderAddApparel} />
-            <Route path="/apparel/all" component={this.renderAllApparel} />
+            <Route path="/addapparel" component={AddApparel} />
+            <Route path="/apparel/all" component={AllApparel} />
             <Route path="/apparel/tops" component={TopsFilter} />
             <Route path="/apparel/bottoms" component={BottomsFilter} />
             <Route path="/apparel/shoes" component={ShoesFilter} />

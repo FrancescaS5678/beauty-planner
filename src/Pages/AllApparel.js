@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
 export default class AllApparel extends Component {
-
-    static propTypes = {
-        apparelList: PropTypes.array.isRequired
-    }
-
     render() {
         return (
             <div>

@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
 export default class AddFilter extends Component {
 
-    static propTypes = {
-        categories: PropTypes.array,
-        allTags: PropTypes.array
+    state = {
+        savedTag: null
     }
 
-    // renderTagButtons = () => {
-    //     for (let i = 0; i < this.props.allTags.length; i++) {
-    //         return <button>{this.props.allTags[i]}</button>
-    //     }
-    // }
+    addTag = (e) => {
+        e.preventDefault()
+    }
 
     render() {
         return (
@@ -24,19 +20,18 @@ export default class AddFilter extends Component {
                 <Link to="/"><button className="backButton">Back</button></Link>
                 <form>
                     <div>
-                        <label for='filterName'>Name:</label>
+                        <label htmlFor='filterName'>Name:</label>
                         <input type="text" name='filterName'></input>
                     </div>
                     <section>
                         <h4><u>Tags</u></h4>
                         <div>
-                            <button>+</button>
-                            {/* {this.renderTagButtons()} */}
+                            <button onClick={this.addTag}>+</button>
                         </div>
                     </section>
                     <button type="submit">Save</button>
                 </form>
             </div>
-      );
+        );
     }
 }
