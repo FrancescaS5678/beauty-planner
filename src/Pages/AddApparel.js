@@ -9,7 +9,8 @@ export default class AllApparel extends Component {
             image: null,
             tags: null
         },
-        tagList: []
+        tagListArr: [],
+        tagList: {}
     }
     
     selectImage = (event) => {
@@ -32,6 +33,7 @@ export default class AllApparel extends Component {
     }
 
     saveApparel = async (e) => {
+        e.preventDefault()
         try {
             let res = await fetch('http://localhost:4001/apparel', {
                 method: 'PUT',
@@ -44,14 +46,13 @@ export default class AllApparel extends Component {
             return
         }
         this.setState({
-            tagList: this.state.savedApparel.tags.split(",")
+            tagListArr: this.state.savedApparel.tags.split(","),
         })
+        Object.assign(this.state.tagList, this.state.tagListArr)
         try {
             let res = await fetch('http://localhost:4001/tags', {
                 method: 'PUT',
-                body: JSON.stringify({
-                    tagList: this.state.tagList
-                }),
+                body: JSON.stringify(this.state.tagList),
                 headers: { "Content-Type": "application/json" },
                 mode: 'cors'
             })
@@ -76,7 +77,7 @@ export default class AllApparel extends Component {
                     <form>
                         <h4><u>Tags</u></h4>
                         <input type="text" onChange={this.tagsSaved}></input><br />
-                        <Link to="/apparel/all"><button type="submit" id="apparelSave" onClick={this.saveApparel}>Save</button></Link>
+                        <button type="submit" id="apparelSave" onClick={this.saveApparel}>Save</button>
                     </form>
                 </section>
             </div>

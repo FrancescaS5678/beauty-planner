@@ -5,7 +5,23 @@ import SiteNav from './SiteNav'
 export default class AddFilter extends Component {
 
     state = {
-        savedTag: null
+        savedTag: null,
+        tagList: []
+    }
+
+    componentDidMount = async () => {
+        try {
+            let res = await fetch('http://localhost:4001/tags')
+            let tagList = await res.json()
+            this.setState({ tagList })
+            console.log("Success")
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
+
+    renderTagButtons = () => {
+        
     }
 
     addTag = (e) => {
