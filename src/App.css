@@ -98,10 +98,12 @@ section > div {
   flex-wrap: wrap;
 }
 
-section button {
+.tagButton {
   justify-items: center;
   font-size: 25px;
   margin-right: 100px;
+  border: 2px solid black;
+  padding: 3px;
 }
 
 button[type='submit'] {
@@ -139,4 +141,10 @@ select {
   margin: 50px 0px 0px 270px;
   padding: 0;
   box-sizing: border-box;
+}
+
+.addTag {
+  display: inline-block;
+  border: 1px solid red;
+  padding: 5px;
 }

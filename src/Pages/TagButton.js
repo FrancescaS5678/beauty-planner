@@ -4,12 +4,13 @@ import PropTypes from 'prop-types'
 export default class TagButton extends Component {
 
     static propTypes = {
-        tagName: PropTypes.string.isRequired
+        tagName: PropTypes.string.isRequired,
+        selectHandler: PropTypes.func.isRequired
     }
 
     render() {
         return (
-            <button>{this.props.tagName}</button>
+            <div className="tagButton" onClick={this.props.selectHandler}>{this.props.tagName}</div>
         )
     }
 

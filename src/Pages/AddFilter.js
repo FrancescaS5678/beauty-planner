@@ -1,32 +1,117 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
+import TagButton from './TagButton'
 
 export default class AddFilter extends Component {
 
     state = {
         savedTag: null,
-        tagList: []
+        apparelList: [],
+        tagList: [],
+        newTagList: [],
+        newAddedTags: [],
+        newCategory: {
+            name: null,
+            selectedTags: []
+        }
     }
 
     componentDidMount = async () => {
         try {
-            let res = await fetch('http://localhost:4001/tags')
-            let tagList = await res.json()
-            this.setState({ tagList })
-            console.log("Success")
+            let res = await fetch('http://localhost:4001/apparel')
+            let apparelList = await res.json()
+            this.setState({ apparelList })
+            console.log("Success", this.state.apparelList)
         } catch (err) {
             throw new Error(err)
         }
     }
 
-    renderTagButtons = () => {
-        
+    saveCategoryName = (e) => {
+        this.setState({
+            newCategory: {
+                name: e.target.value,
+                selectedTags: this.state.newCategory.selectedTags
+            }
+        })
     }
 
-    addTag = (e) => {
-        e.preventDefault()
+    selectHandler = (tag) => {
+        return () => {
+            this.state.newCategory.selectedTags.push(tag)
+        }
     }
+
+    createTagList = () => {
+        this.state.tagList = []
+        this.state.apparelList.forEach((apparel) => {
+            apparel.tags.forEach((tag) => {
+                this.state.tagList.push(tag)
+            })
+        })
+    }
+
+    renderTagButtons = () => {
+        return this.state.tagList.map((tag, i) => {
+            return <TagButton tagName={tag} selectHandler={this.selectHandler(tag)} key={i} />
+        })
+    }
+
+    saveTagName = (e) => {
+        this.setState({
+            savedTag: e.target.value
+        })
+    }
+
+    pushNewCategory = async (e) => {
+        e.preventDefault()
+        try {
+            let res = await fetch('http://localhost:4001/categories', {
+                method: 'PUT', 
+                body: JSON.stringify(this.state.newCategory),
+                headers: { "Content-Type": "application/json" },
+                mode: 'cors'
+            })
+            console.log("Success", JSON.stringify(res))
+        } catch (err) {
+            throw new Error(err)
+        }
+        this.setState({
+            newCategory: {
+                name: null, 
+                selectedTags:[]
+            }
+        })
+    }
+
+    // addTag = async () => {
+    //     try {
+    //         let res = await fetch('http://localhost:4001/tags', {
+    //             method: 'PUT',
+    //             body: JSON.stringify({
+    //                 tag: this.state.savedTag
+    //             }),
+    //             headers: { "Content-Type": "application/json" },
+    //             mode: 'cors'
+    //         })
+    //         console.log("Success", JSON.stringify(res))
+    //     } catch (err) {
+    //         throw new Error(err)
+    //     } finally {
+    //         let res = await fetch('http://localhost:4001/tags', {
+    //             method: 'GET',
+    //             headers: { "Content-Type": "application/json" },
+    //             mode: 'cors'
+    //         })
+    //         let newTagList = await res.json()
+    //         this.setState({ newTagList })
+    //     }
+    //     this.state.newTagList.forEach((tags) => {
+    //         this.state.newAddedTags.push(tags.tag)
+    //     })
+    //     console.log(this.state.newAddedTags)
+    // }
 
     render() {
         return (
@@ -37,15 +122,19 @@ export default class AddFilter extends Component {
                 <form>
                     <div>
                         <label htmlFor='filterName'>Name:</label>
-                        <input type="text" name='filterName'></input>
+                        <input type='text' name='filterName' onChange={this.saveCategoryName}></input>
+                        <label htmlFor='addTag'>Add Tag:</label>
+                        <input type='text' name='addTag'></input>
+                        <div className='addTag' onClick={this.addTag}>+</div>
                     </div>
                     <section>
                         <h4><u>Tags</u></h4>
                         <div>
-                            <button onClick={this.addTag}>+</button>
+                            {this.createTagList()}
+                            {this.renderTagButtons()}
                         </div>
                     </section>
-                    <button type="submit">Save</button>
+                    <button type="submit" onClick={this.pushNewCategory}>Save</button>
                 </form>
             </div>
         );

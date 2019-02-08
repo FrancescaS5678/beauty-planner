@@ -10,13 +10,13 @@ export default class Categories extends Component {
     }
 
     componentDidMount = async () => {
-        try {
-            const res = await fetch('http://localhost:4001/categories')
-            const categoriesList = await res.json()
-            this.setState({ categoriesList })
-        } catch (err) {
-            throw new Error(err)
-        }
+        // try {
+        //     const res = await fetch('http://localhost:4001/categories')
+        //     const categoriesList = await res.json()
+        //     this.setState({ categoriesList })
+        // } catch (err) {
+        //     throw new Error(err)
+        // }
     }
 
     renderCategory = () => {

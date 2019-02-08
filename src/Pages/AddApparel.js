@@ -26,7 +26,7 @@ export default class AllApparel extends Component {
     tagsSaved = (e) => {
         this.setState({
             savedApparel: {
-                tags: e.target.value,
+                tags: e.target.value.split(","),
                 image: this.state.savedApparel.image
             }
         })
@@ -38,21 +38,6 @@ export default class AllApparel extends Component {
             let res = await fetch('http://localhost:4001/apparel', {
                 method: 'PUT',
                 body: JSON.stringify(this.state.savedApparel),
-                headers: { "Content-Type": "application/json" },
-                mode: 'cors'
-            })
-            console.log("Success", JSON.stringify(res))
-        } catch (err) {
-            return
-        }
-        this.setState({
-            tagListArr: this.state.savedApparel.tags.split(","),
-        })
-        Object.assign(this.state.tagList, this.state.tagListArr)
-        try {
-            let res = await fetch('http://localhost:4001/tags', {
-                method: 'PUT',
-                body: JSON.stringify(this.state.tagList),
                 headers: { "Content-Type": "application/json" },
                 mode: 'cors'
             })
