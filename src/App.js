@@ -20,13 +20,9 @@ export default class App extends Component {
       let categories = await res.json()
       this.setState({ categories })
       console.log("Success", this.state.categories)
-    } catch(err) {
+    } catch (err) {
       throw new Error(err)
     }
-    this.state.categories.map((category)=> {
-      console.log(category.name)
-      return <Route path={`/${category.name}`} component={CategoryPageRender} />
-    })
   }
 
   render() {
@@ -39,6 +35,11 @@ export default class App extends Component {
             <Route path="/addfilter" component={AddFilter} />
             <Route path="/addapparel" component={AddApparel} />
             <Route path="/all" component={AllApparel} />
+            {
+              this.state.categories.map((category) => {
+                return <Route path={`/${category.name}`} component={CategoryPageRender} key={category._id} />
+              })
+            }
           </Switch>
         </div>
       </Router>

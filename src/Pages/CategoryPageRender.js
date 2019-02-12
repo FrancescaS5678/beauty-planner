@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
 
 export default class CategoryPageRender extends Component {
+
+    componentDidMount = () => {
+        console.log("yay")
+    }
+
     render() {
         return (
             <div>
