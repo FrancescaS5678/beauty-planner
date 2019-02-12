@@ -10,18 +10,19 @@ export default class Categories extends Component {
     }
 
     componentDidMount = async () => {
-        // try {
-        //     const res = await fetch('http://localhost:4001/categories')
-        //     const categoriesList = await res.json()
-        //     this.setState({ categoriesList })
-        // } catch (err) {
-        //     throw new Error(err)
-        // }
+        try {
+            const res = await fetch('http://localhost:4001/categories')
+            const categoriesList = await res.json()
+            this.setState({ categoriesList })
+            console.log("Success", this.state.categoriesList)
+        } catch (err) {
+            throw new Error(err)
+        }
     }
 
     renderCategory = () => {
         return this.state.categoriesList.map((category) => {
-            return <CategoryRender name={category.name} url={category.url} />
+            return <CategoryRender name={category.name} url={category.name} key={category._id} />
         })
     }
 
@@ -33,6 +34,7 @@ export default class Categories extends Component {
                 <div className="category">
                     <h3><Link to='/addfilter'>+</Link></h3>
                     <h3><Link to='/apparel/all'>All</Link></h3>
+                    {this.renderCategory()}
                 </div>
             </div>
         )
