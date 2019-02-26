@@ -11,10 +11,9 @@ export default class Categories extends Component {
 
     componentDidMount = async () => {
         try {
-            const res = await fetch('http://localhost:4001/categories')
+            const res = await fetch('https://vast-meadow-37764.herokuapp.com/categories')
             const categoriesList = await res.json()
             this.setState({ categoriesList })
-            console.log("Success", this.state.categoriesList)
         } catch (err) {
             throw new Error(err)
         }

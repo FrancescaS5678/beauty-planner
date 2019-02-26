@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
+import Axios from 'axios';
 
 export default class AllApparel extends Component {
     state = {
@@ -34,17 +35,18 @@ export default class AllApparel extends Component {
 
     saveApparel = async (e) => {
         e.preventDefault()
-        try {
-            let res = await fetch('http://localhost:4001/apparel', {
-                method: 'PUT',
-                body: JSON.stringify(this.state.savedApparel),
-                headers: { "Content-Type": "application/json" },
-                mode: 'cors'
-            })
-            console.log("Success", JSON.stringify(res))
-        } catch (err) {
-            return
-        }
+        Axios.post('http://localhost:4001/apparel', this.state.savedApparel)
+        // try {
+        //     let res = await fetch('http://localhost:4001/apparel', {
+        //         method: 'PUT',
+        //         body: JSON.stringify(this.state.savedApparel),
+        //         headers: { "Content-Type": "application/json" },
+        //         mode: 'cors'
+        //     })
+        //     console.log("Success", JSON.stringify(res))
+        // } catch (err) {
+        //     return
+        // }
     }
 
     render() {

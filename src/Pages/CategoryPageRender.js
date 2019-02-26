@@ -21,7 +21,6 @@ export default class CategoryPageRender extends Component {
         } catch (err) {
             throw new Error (err)
         }
-        console.log(this.state.categories)
         this.state.categories.forEach((category) => {
             if (this.props.location.pathname.includes(category.name)) {
                 this.setState({
