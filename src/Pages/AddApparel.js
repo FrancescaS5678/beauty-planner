@@ -46,6 +46,14 @@ export default class AllApparel extends Component {
             console.log("Success", JSON.stringify(res))
         } catch (err) {
             return
+        } finally {
+            let res = await fetch('https://vast-meadow-37764.herokuapp.com/apparel', {
+                method: 'PUT',
+                body: JSON.stringify(this.state.savedApparel),
+                headers: { "Content-Type": "application/json" },
+                mode: 'cors'
+            })
+            console.log("Success", JSON.stringify(res))
         }
     }
 
