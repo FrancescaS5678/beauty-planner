@@ -40,7 +40,7 @@ export default class AllApparel extends Component {
                 body: JSON.stringify({
                     photo: this.state.file
                 }),
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "multipart/form-data" },
                 mode: 'cors'
             })
             console.log("Success", JSON.stringify(res))
