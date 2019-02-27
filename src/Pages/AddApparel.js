@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import SiteNav from './SiteNav'
-import Axios from 'axios';
 
 export default class AllApparel extends Component {
     state = {
@@ -35,18 +34,19 @@ export default class AllApparel extends Component {
 
     saveApparel = async (e) => {
         e.preventDefault()
-        Axios.post('http://localhost:4001/apparel', this.state.savedApparel)
-        // try {
-        //     let res = await fetch('http://localhost:4001/apparel', {
-        //         method: 'PUT',
-        //         body: JSON.stringify(this.state.savedApparel),
-        //         headers: { "Content-Type": "application/json" },
-        //         mode: 'cors'
-        //     })
-        //     console.log("Success", JSON.stringify(res))
-        // } catch (err) {
-        //     return
-        // }
+        try {
+            let res = await fetch('http://localhost:4001/photos', {
+                method: 'PUT',
+                body: JSON.stringify({
+                    photo: this.state.file
+                }),
+                headers: { "Content-Type": "application/json" },
+                mode: 'cors'
+            })
+            console.log("Success", JSON.stringify(res))
+        } catch (err) {
+            return
+        }
     }
 
     render() {
@@ -57,7 +57,9 @@ export default class AllApparel extends Component {
                 <Link to="/"><button className="backButton">Back</button></Link>
                 <section>
                     <h4>Add Image</h4>
-                    <input type="file" ref="fileUploader" name="addpic" onChange={this.selectImage}></input>
+                    <form enctype="multipart/form-data">
+                        <input type="file" ref="fileUploader" name="addpic" onChange={this.selectImage}></input>
+                    </form>
                 </section>
                 <section id="addApparel">
                     <img src={this.state.file} alt="Your Apparel" />

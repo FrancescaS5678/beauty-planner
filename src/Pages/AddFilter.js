@@ -22,7 +22,6 @@ export default class AddFilter extends Component {
             let res = await fetch('https://vast-meadow-37764.herokuapp.com/apparel')
             let apparelList = await res.json()
             this.setState({ apparelList })
-            console.log("Success", this.state.apparelList)
         } catch (err) {
             throw new Error(err)
         }
