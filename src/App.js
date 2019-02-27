@@ -19,6 +19,7 @@ export default class App extends Component {
       let res = await fetch('https://vast-meadow-37764.herokuapp.com/categories')
       let categories = await res.json()
       this.setState({ categories })
+      console.log(categories)
     } catch (err) {
       throw new Error(err)
     }

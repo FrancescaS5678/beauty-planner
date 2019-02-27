@@ -19,7 +19,7 @@ export default class AddFilter extends Component {
 
     componentDidMount = async () => {
         try {
-            let res = await fetch('http://localhost:4001/apparel')
+            let res = await fetch('https://vast-meadow-37764.herokuapp.com/apparel')
             let apparelList = await res.json()
             this.setState({ apparelList })
             console.log("Success", this.state.apparelList)

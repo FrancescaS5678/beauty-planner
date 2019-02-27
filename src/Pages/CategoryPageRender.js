@@ -15,7 +15,7 @@ export default class CategoryPageRender extends Component {
 
     componentDidMount = async () => {
         try {
-            let res = await fetch('http://localhost:4001/categories')
+            let res = await fetch('https://vast-meadow-37764.herokuapp.com/categories')
             let categories = await res.json()
             this.setState({ categories })
         } catch (err) {
