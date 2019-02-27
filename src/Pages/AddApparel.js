@@ -35,7 +35,7 @@ export default class AllApparel extends Component {
     saveApparel = async (e) => {
         e.preventDefault()
         try {
-            let res = await fetch('http://localhost:4001/photos', {
+            let res = await fetch('https://vast-meadow-37764.herokuapp.com/photos', {
                 method: 'PUT',
                 body: JSON.stringify({
                     photo: this.state.file
