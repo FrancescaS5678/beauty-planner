@@ -57,7 +57,7 @@ export default class AllApparel extends Component {
                 <Link to="/"><button className="backButton">Back</button></Link>
                 <section>
                     <h4>Add Image</h4>
-                    <form enctype="multipart/form-data">
+                    <form encType="multipart/form-data">
                         <input type="file" ref="fileUploader" name="addpic" onChange={this.selectImage}></input>
                     </form>
                 </section>
