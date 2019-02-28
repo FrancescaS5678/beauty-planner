@@ -37,9 +37,7 @@ export default class AllApparel extends Component {
         try {
             let res = await fetch('https://vast-meadow-37764.herokuapp.com/apparel', {
                 method: 'PUT',
-                body: JSON.stringify({
-                    photo: this.state.file
-                }),
+                body: JSON.stringify(this.state.savedApparel),
                 headers: { "Content-Type": "application/json" },
                 mode: 'cors'
             })
