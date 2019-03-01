@@ -66,7 +66,7 @@ export default class AddFilter extends Component {
     pushNewCategory = async (e) => {
         e.preventDefault()
         try {
-            let res = await fetch('http://localhost:4001/categories', {
+            let res = await fetch('https://vast-meadow-37764.herokuapp.com/categories', {
                 method: 'PUT', 
                 body: JSON.stringify(this.state.newCategory),
                 headers: { "Content-Type": "application/json" },
